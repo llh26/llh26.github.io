@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>匯率轉換計算機</title>
+        <link rel="stylesheet" href="mystyle.css">
+    </head>
+
+    <body>
+        <div>
+            <label>輸入金額(TWD)</label>
+            <input id="TWD" type="text" value=""/>
+            <input id = "btn" type="button" value="Submit"/>
+            <button type="button" onclick="convert()">SUBMIT</button>
+            <button onclick="reset()">RESET</button>
+            <br>
+            <p>請輸入正整數!!</p>
+            <p id="a">請輸入正整數!!</p>
+            <a href="https://rate.bot.com.tw/xrt">匯率參考來源</a>
+            <hr>
+            Result:<p class="summary"></p>
+        </div>
+        <script>/*1*/
+        var summary = document.querySelector('.summary');
+            document.getElementById('btn').onclick=function (){
+                var result='';
+                var TWD = parseInt(document.getElementById('TWD').value);
+                var USD = 30.27*TWD;
+                var EUR = 32.11*TWD;
+                var JPY = 0.2091*TWD;
+                var KRW = 0.02147*TWD;
+                var AUD = 19.67*TWD;
+
+                result='USD:' + USD + 
+                    'EUR:' + EUR + 
+                    'JPY:' + JPY + 
+                    'KRW:' + KRW + 
+                    'AUD:' + AUD ;
+
+                summary.innerHTML =result;
+                /*const xmlhttp = new XMLHttpRequest();
+
+                xhttp.onload = function(){
+                    myFunction(this);
+                }
+
+                xhttp.open("GET", "./rate.xml");
+                xhttp.send();*/
+            }
+
+            /*function myFunction(xml){
+                var result='';
+                const xmlDoc = xml.responseXML;
+                const x =xmlDoc.getElementsByTagName("exchange_rate");
+                
+                var TWD = document.getElementById('TWD').value;
+                var USD = x[0].getElementsByTagName("rateUSD")[0].value*TWD;
+                var EUR = x[0].getElementsByTagName("rateEUR")[0].value*TWD;
+                var JPY = x[0].getElementsByTagName("rateJPY")[0].value*TWD;
+                var KRW = x[0].getElementsByTagName("rateKRW")[0].value*TWD;
+                var AUD = x[0].getElementsByTagName("rateAUD")[0].value*TWD;
+
+                if(TWD < 0){
+                    result += '請輸入正整數';
+                }else{
+                    USD = USD.toFixed(2);
+                    EUR = EUR.toFixed(2);
+                    JPY = JPY.toFixed(2);
+                    KRW = KRW.toFixed(2);
+                    AUD = AUD.toFixed(2);
+                    result +=
+                    'USD:' + USD + 
+                    'EUR:' + EUR + 
+                    'JPY:' + JPY + 
+                    'KRW:' + KRW + 
+                    'AUD:' + AUD ;
+                }
+                document.getElementById("summary").innerHTML = result;
+            } */
+            function reset(){
+                document.getElementById("TWD").value="";
+                document.getElementById("summary").textContent="";
+            }
+        </script>
+    </body>
+</html>
